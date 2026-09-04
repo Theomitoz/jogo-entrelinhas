@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#132421" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="description" content="Uma experiência narrativa sobre atravessar um dia difícil, um momento de cada vez." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Entrelinhas" />
+  <meta name="apple-mobile-web-app-background" content="#0b1715" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="supported-color-schemes" content="dark" />
+  <meta name="application-name" content="Entrelinhas" />
+  <meta name="msapplication-TileColor" content="#132421" />
+  <meta name="msapplication-config" content="none" />
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <title>Entrelinhas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=3" />
+</head>
+<body>
+  <!-- MENU INICIAL -->
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-container">
+      <div class="menu-header">
+        <div class="brand-mark-menu" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="menu-title">
+          <h1>ENTRELINHAS</h1>
+          <p>uma pergunta de cada vez</p>
+        </div>
+      </div>
+
+      <nav class="menu-items">
+        <button class="menu-item" id="continueButton" hidden disabled>
+          <span class="menu-label">Continuar Jogo</span>
+          <span class="menu-desc" id="continueDesc"></span>
+          <span class="menu-arrow">↗</span>
+        </button>
+        <button class="menu-item" id="startButton">
+          <span class="menu-label">Iniciar Jogo</span>
+          <span class="menu-desc">Nova sessão</span>
+          <span class="menu-arrow">↗</span>
+        </button>
+        <button class="menu-item" id="aboutButton">
+          <span class="menu-label">Sobre o Jogo</span>
+          <span class="menu-desc">Por que Entrelinhas?</span>
+          <span class="menu-arrow">↗</span>
+        </button>
+        <button class="menu-item" id="settingsButton">
+          <span class="menu-label">Configurações</span>
+          <span class="menu-desc">Preferências</span>
+          <span class="menu-arrow">↗</span>
+        </button>
+        <button class="menu-item menu-item-exit" id="exitButton">
+          <span class="menu-label">Sair</span>
+          <span class="menu-desc">Fechar aplicativo</span>
+          <span class="menu-arrow">↗</span>
+        </button>
+      </nav>
+
+      <footer class="menu-footer">
+        <a href="https://cvv.org.br/" target="_blank" rel="noopener noreferrer" class="cvv-link">HELP</a>
+      </footer>
+    </div>
+  </div>
+
+  <!-- MODAL SOBRE -->
+  <div class="modal" id="aboutModal" hidden>
+    <div class="modal-content">
+      <button class="modal-close" id="closeAboutButton">&times;</button>
+      <h2>Sobre o Entrelinhas</h2>
+      <div class="modal-text">
+        <p><strong>Entrelinhas</strong> é uma experiência narrativa interativa sobre problemas do cotidiano e os pequenos sinais de esperança que podem aparecer no caminho.</p>
+        
+        <p>Não existe uma forma certa de viver esses dias. Não existe uma resposta perfeita. Existem apenas <strong>pequenos movimentos</strong> — gestos que podem parecer insignificantes, mas que contam.</p>
+
+        <h3>Por que Entrelinhas?</h3>
+        <p>Porque muitas vezes, a vida se vive nos espaços entre as coisas. Entre tentar e desistir. Entre estar bem e estar quebrado. Entre hoje e amanhã.</p>
+
+        <p>Este jogo é um convite para explorar esses espaços com compaixão e lembrar que, mesmo em um dia ruim, ainda podemos encontrar algo bom.</p>
+
+        <p style="margin-top: 2em; color: var(--muted); font-size: 11px;">theomitoz</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL CONFIGURAÇÕES -->
+  <div class="modal" id="settingsModal" hidden>
+    <div class="modal-content">
+      <button class="modal-close" id="closeSettingsButton">&times;</button>
+      <h2>Configurações</h2>
+      <div class="modal-text">
+        <div class="settings-group">
+          <label class="settings-item">
+            <input type="checkbox" id="soundToggle" />
+            <span>Sons e efeitos</span>
+          </label>
+        </div>
+
+        <div class="settings-group">
+          <label class="settings-item">
+            <input type="checkbox" id="ambientMusicToggle" checked />
+            <span>Música ambiente</span>
+          </label>
+        </div>
+
+        <div class="settings-group">
+          <label class="settings-item">
+            <span>Volume</span>
+            <input type="range" id="volumeSlider" min="0" max="100" value="70" class="volume-slider" />
+            <span id="volumeValue">70%</span>
+          </label>
+        </div>
+
+        <div class="settings-group">
+          <label class="settings-item">
+            <input type="checkbox" id="animationToggle" checked />
+            <span>Animações suaves</span>
+          </label>
+        </div>
+
+        <div class="settings-group">
+          <label class="settings-item">
+            <input type="checkbox" id="darkModeToggle" checked />
+            <span>Modo escuro</span>
+          </label>
+        </div>
+
+        <div class="settings-group">
+          <label class="settings-item">
+            <input type="checkbox" id="notificationsToggle" />
+            <span>Notificações (PWA)</span>
+          </label>
+          <p class="settings-help">Receba lembretes do app sobre seus próximos momentos quando ele estiver instalado no celular.</p>
+        </div>
+
+        <hr style="border: none; border-top: 1px solid var(--line); margin: 1.5em 0;">
+
+        <div class="settings-group">
+          <button class="settings-danger-button" id="clearDataButton">
+            Limpar todos os dados
+          </button>
+          <p style="font-size: 9px; color: var(--muted); margin-top: 0.5em;">
+            Isto apagará todo o histórico de sessões salvo. Não pode ser desfeito.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE AJUDA E SUPORTE -->
+  <div class="modal" id="helpModal" hidden>
+    <div class="modal-content modal-help">
+      <button class="modal-close" id="closeHelpButton">&times;</button>
+      <h2>Se precisar de ajuda, pode entrar em contato</h2>
+      <div class="modal-text">
+        <p class="help-lead">Se precisar de ajuda, entre em contato com:</p>
+        <div class="help-contact">
+          <h4>Centro de Valorização da Vida</h4>
+          <p><strong>Telefone:</strong> <a href="tel:188">188</a> (chamada gratuita, 24h)</p>
+          <p><strong>Website:</strong> <a href="https://cvv.org.br/" target="_blank" rel="noopener noreferrer" class="cvv-link-modal">cvv.org.br</a></p>
+          <p class="help-note">Atendimento sigiloso e acolhedor.</p>
+        </div>
+        <div class="help-emergency">
+          <h4>Emergência médica</h4>
+          <p><strong>Samu:</strong> <a href="tel:192">192</a></p>
+          <p class="help-note">Se houver perigo imediato, ligue 192 ou procure um pronto atendimento.</p>
+        </div>
+        <p class="help-verse"><em>“Tudo posso naquele que me fortalece.”</em><br><small>Filipenses 4:13</small></p>
+        <p class="help-note">Pedir ajuda é um sinal de cuidado. Você não precisa passar por isso sozinho.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- APP PRINCIPAL -->
+  <main class="app-shell" id="appShell" hidden>
+    <header class="topbar">
+      <button class="menu-toggle" id="menuToggleButton" aria-label="Voltar ao menu" title="Voltar ao menu">←</button>
+      <button class="install-button" id="installButton" hidden>instalar</button>
+    </header>
+
+    <section class="moment-card" id="momentCard">
+      <span class="moment-time" id="momentTime"></span>
+      <h2 id="momentTitle">O alarme tocou.</h2>
+      <p id="momentCopy"></p>
+      <div class="choices" id="choices"></div>
+      <p class="interaction-text" id="responseText" hidden></p>
+      <button class="next-button" id="nextButton" type="button" aria-label="Próxima pergunta" title="Próxima pergunta" hidden>→</button>
+    </section>
+
+    <section class="final-choices" id="finalChoices" hidden>
+      <button class="final-choice" id="continueFinalButton" type="button"><strong>Continuar</strong><span>seguir por mais um caminho</span></button>
+      <button class="final-choice" id="restFinalButton" type="button"><strong>Descansar</strong><span>deixar o momento terminar</span></button>
+    </section>
+    <audio id="completionSound" preload="auto"></audio>
+
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js?v=2"></script>
+</body>
+</html>
