@@ -391,6 +391,8 @@ function choose(button, cost, response, nextPath) {
     current = 0;
     moments = makeQuestions(20, path);
   }
+  saveProgressDB({current, moments, negativeResponseCount, stage, path})
+    .catch(err => console.log('Erro ao salvar resposta:', err));
   $('responseText').hidden=false;
   typeText($('responseText'), response, 120);
   setTimeout(() => $('nextButton').hidden=false, response.length * 120 + 400);
